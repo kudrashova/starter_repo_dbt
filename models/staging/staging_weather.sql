@@ -4,7 +4,6 @@ WITH temperature_daily AS (
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'mintemp_c')::VARCHAR)::FLOAT AS mintemp_c,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'avgtemp_c')::VARCHAR)::FLOAT AS avgtemp_c,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'maxwind_kph')::VARCHAR)::FLOAT AS maxwind_kph,
-         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'totalsnow_cm')::VARCHAR)::FLOAT AS totalsnow_cm,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'totalprecip_mm')::VARCHAR)::FLOAT AS totalprecip_mm,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'avghumidity')::VARCHAR)::FLOAT AS avghumidity,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'astro' -> 'sunrise')::VARCHAR)::TIME AS sunrise, 
@@ -30,7 +29,6 @@ SELECT
     mintemp_c,
     maxwind_kph,
     totalprecip_mm,
-    totalsnow_cm,
     avghumidity,
     substring(condition, 2, (len(condition)-2)) as condition
 FROM temperature_daily
