@@ -18,13 +18,13 @@ WITH temperature_daily AS (
     FROM {{source("staging", "raw_temp")}})
 SELECT 
     date,
-    substring(city, 2, (length(city)-2)) as city,
-    substring(region, 2, (length(region)-2)) as region,
-    substring(country, 2, (length(country)-2)) as country,
+    substring(city, 2, (len(city)-2)) as city,
+    substring(region, 2, (len(region)-2)) as region,
+    substring(country, 2, (len(country)-2)) as country,
     lat,
     lon,
-    substring(sunrise, 2, (length(sunrise)-2)) as sunrise,
-    substring(sunset, 2, (length(sunset)-2)) as sunset,
+    substring(sunrise, 2, (len(sunrise)-2)) as sunrise,
+    substring(sunset, 2, (len(sunset)-2)) as sunset,
     maxtemp_c,
     avgtemp_c,
     mintemp_c,
@@ -32,5 +32,5 @@ SELECT
     totalprecip_mm,
     totalsnow_cm,
     avghumidity,
-    substring(condition, 2, (length(condition)-2)) as condition
+    substring(condition, 2, (len(condition)-2)) as condition
 FROM temperature_daily
