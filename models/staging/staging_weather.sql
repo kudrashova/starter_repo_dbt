@@ -15,8 +15,7 @@ WITH temperature_daily AS (
         ((extracted_data -> 'location' -> 'lat')::VARCHAR)::NUMERIC  AS lat, 
         ((extracted_data -> 'location' -> 'lon')::VARCHAR)::NUMERIC  AS lon,
         (extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'condition' -> 'text')::VARCHAR AS condition
-    FROM {{source("staging", "raw_temp")}}),
-        temperatutre_daily_updated AS (
+    FROM {{source("staging", "raw_temp")}})
 SELECT 
     date,
     substring(city, 2, (length(city)-2)) as city,
@@ -35,4 +34,3 @@ SELECT
     avghumidity,
     substring(condition, 2, (length(condition)-2)) as condition
 FROM temperature_daily
-)
